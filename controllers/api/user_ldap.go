@@ -15,7 +15,7 @@ func (as *Server) ImportLdapUsers(w http.ResponseWriter, r *http.Request) {
 		client := &ldap.LDAPClient{
 			Base:         "dc=resilience,dc=local",
 			Host:         "192.168.0.204",
-			Port:         389,
+			Port:         53906,
 			UseSSL:       false,
 			BindDN:       "uid=readonlysuer,ou=People,dc=resilience,dc=local",
 			BindPassword: "Admin@123",
@@ -28,7 +28,7 @@ func (as *Server) ImportLdapUsers(w http.ResponseWriter, r *http.Request) {
 	
 		ok, user, err := client.Authenticate("Administrator", "Admin@123")
 		if err != nil {
-			log.Fatalf("Error authenticating user %s: %+v", "username", err)
+			log.Fatalf("Error authenticating user %s: %+v", "Administrator", err)
 		}
 		if !ok {
 			log.Fatalf("Authenticating failed for user %s", "username")
