@@ -17,14 +17,15 @@ func (as *Server) ImportLdapUsers(w http.ResponseWriter, r *http.Request) {
 			Host:         "192.168.0.204",
 			Port:         53906,
 			UseSSL:       false,
+			SkipTLS: 	  false,
 			BindDN:       "uid=readonlysuer,ou=People,dc=resilience,dc=local",
 			BindPassword: "Admin@123",
 			UserFilter:   "(uid=%s)",
 			GroupFilter: "(memberUid=%s)",
 			Attributes:   []string{"givenName", "sn", "mail", "uid"},
 		}
-		// // It is the responsibility of the caller to close the connection
-		// defer client.Close()
+		// It is the responsibility of the caller to close the connection
+		defer client.Close()
 	
 		ok, user, err := client.Authenticate("Administrator", "Admin@123")
 		if err != nil {
