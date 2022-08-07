@@ -13,12 +13,12 @@ func (as *Server) ImportLdapUsers(w http.ResponseWriter, r *http.Request) {
 	switch {
 	case r.Method == "GET":
 		client := &ldap.LDAPClient{
-			Base:         "dc=example,dc=com",
-			Host:         "ldap.example.com",
+			Base:         "dc=resilience,dc=local",
+			Host:         "192.168.0.204",
 			Port:         389,
 			UseSSL:       false,
-			BindDN:       "uid=readonlysuer,ou=People,dc=example,dc=com",
-			BindPassword: "readonlypassword",
+			BindDN:       "uid=readonlysuer,ou=People,dc=resilience,dc=local",
+			BindPassword: "Admin@123",
 			UserFilter:   "(uid=%s)",
 			GroupFilter: "(memberUid=%s)",
 			Attributes:   []string{"givenName", "sn", "mail", "uid"},
