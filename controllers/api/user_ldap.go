@@ -23,8 +23,8 @@ func (as *Server) ImportLdapUsers(w http.ResponseWriter, r *http.Request) {
 			GroupFilter: "(memberUid=%s)",
 			Attributes:   []string{"givenName", "sn", "mail", "uid"},
 		}
-		// It is the responsibility of the caller to close the connection
-		defer client.Close()
+		// // It is the responsibility of the caller to close the connection
+		// defer client.Close()
 	
 		ok, user, err := client.Authenticate("Administrator", "Admin@123")
 		if err != nil {
